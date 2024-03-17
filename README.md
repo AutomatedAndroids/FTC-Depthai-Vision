@@ -2,6 +2,7 @@
 
 This package is designed to replace the existing FTC:Vision library built into your robot, as a relatively drop-in replacement. Additionally, it features a collection of systems for working depthai, and hopefully more camera systems in the future.
 
+### WARNING: THIS PACKAGE IS _NOT_ MEANT FOR PRODUCTION SYSTEMS.
 ## Installation
 [![](https://jitpack.io/v/AutomatedAndroids/FTC-Depthai-Vision.svg)](https://jitpack.io/#AutomatedAndroids/FTC-Depthai-Vision)
 
