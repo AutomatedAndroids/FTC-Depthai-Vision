@@ -7,7 +7,7 @@ import org.bytedeco.opencv.global.opencv_core
 import org.bytedeco.opencv.global.opencv_highgui
 import org.bytedeco.opencv.opencv_core.Mat
 
-// Inludes common necessary includes for development using depthai library
+// Includes common necessary includes for development using depthai library
 object CameraPreviewExample {
     fun createCameraPipeline(): Pipeline {
         val p = Pipeline()

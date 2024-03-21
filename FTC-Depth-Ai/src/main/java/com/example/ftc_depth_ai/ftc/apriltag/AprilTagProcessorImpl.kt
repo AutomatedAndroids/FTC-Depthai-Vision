@@ -20,8 +20,8 @@ import org.opencv.core.MatOfPoint3f
 import org.opencv.core.Point
 import org.opencv.core.Point3
 import org.opencv.imgproc.Imgproc
-import org.openftc.apriltag.AprilTagDetectorJNI
-import org.openftc.apriltag.ApriltagDetectionJNI
+import com.example.vision.ftcdepthai.openftc.apriltag.AprilTagDetectorJNI
+import com.example.vision.ftcdepthai.openftc.apriltag.ApriltagDetectionJNI
 import kotlin.concurrent.Volatile
 
 /*
@@ -89,7 +89,7 @@ class AprilTagProcessorImpl(
         // Might be null if createApriltagDetector() threw an exception
         if (nativeApriltagPtr != 0L) {
             // Delete the native context we created in the constructor
-            AprilTagDetectorJNI.releaseApriltagDetector(nativeApriltagPtr)
+            com.example.vision.ftcdepthai.openftc.apriltag.AprilTagDetectorJNI.releaseApriltagDetector(nativeApriltagPtr)
             nativeApriltagPtr = 0
         } else {
             println("AprilTagDetectionPipeline.finalize(): nativeApriltagPtr was NULL")
@@ -144,7 +144,7 @@ class AprilTagProcessorImpl(
         Imgproc.cvtColor(input, grey, Imgproc.COLOR_RGBA2GRAY)
         synchronized(decimationSync) {
             if (needToSetDecimation) {
-                AprilTagDetectorJNI.setApriltagDetectorDecimation(nativeApriltagPtr, decimation)
+                com.example.vision.ftcdepthai.openftc.apriltag.AprilTagDetectorJNI.setApriltagDetectorDecimation(nativeApriltagPtr, decimation)
                 needToSetDecimation = false
             }
         }
@@ -161,18 +161,18 @@ class AprilTagProcessorImpl(
 
     // We cannot use runAprilTagDetectorSimple because we cannot assume tags are all the same size
     fun runAprilTagDetectorForMultipleTagSizes(captureTimeNanos: Long): ArrayList<AprilTagDetection> {
-        val ptrDetectionArray = AprilTagDetectorJNI.runApriltagDetector(
+        val ptrDetectionArray = com.example.vision.ftcdepthai.openftc.apriltag.AprilTagDetectorJNI.runApriltagDetector(
             nativeApriltagPtr,
             grey.dataAddr(),
             grey.width(),
             grey.height()
         )
         if (ptrDetectionArray != 0L) {
-            val detectionPointers = ApriltagDetectionJNI.getDetectionPointers(ptrDetectionArray)
+            val detectionPointers = com.example.vision.ftcdepthai.openftc.apriltag.ApriltagDetectionJNI.getDetectionPointers(ptrDetectionArray)
             val detections = ArrayList<AprilTagDetection>(detectionPointers.size)
             for (ptrDetection in detectionPointers) {
-                val metadata = tagLibrary.lookupTag(ApriltagDetectionJNI.getId(ptrDetection))
-                val corners = ApriltagDetectionJNI.getCorners(ptrDetection)
+                val metadata = tagLibrary.lookupTag(com.example.vision.ftcdepthai.openftc.apriltag.ApriltagDetectionJNI.getId(ptrDetection))
+                val corners = com.example.vision.ftcdepthai.openftc.apriltag.ApriltagDetectionJNI.getCorners(ptrDetection)
                 val cornerPts = arrayOfNulls<Point>(4)
                 for (p in 0..3) {
                     cornerPts[p] = Point(corners[p][0], corners[p][1])
@@ -183,7 +183,7 @@ class AprilTagProcessorImpl(
                     val solver = poseSolver // snapshot, can change
                     val startSolveTime = System.currentTimeMillis()
                     if (solver == PoseSolver.APRILTAG_BUILTIN) {
-                        val pose = ApriltagDetectionJNI.getPoseEstimate(
+                        val pose = com.example.vision.ftcdepthai.openftc.apriltag.ApriltagDetectionJNI.getPoseEstimate(
                             ptrDetection,
                             outputUnitsLength.fromUnit(metadata.distanceUnit, metadata.tagsize),
                             fx, fy, cx, cy
@@ -251,12 +251,12 @@ class AprilTagProcessorImpl(
                 } else {
                     null
                 }
-                val center = ApriltagDetectionJNI.getCenterpoint(ptrDetection)
+                val center = com.example.vision.ftcdepthai.openftc.apriltag.ApriltagDetectionJNI.getCenterpoint(ptrDetection)
                 detections.add(
                     AprilTagDetection(
-                        ApriltagDetectionJNI.getId(ptrDetection),
-                        ApriltagDetectionJNI.getHamming(ptrDetection),
-                        ApriltagDetectionJNI.getDecisionMargin(ptrDetection),
+                        com.example.vision.ftcdepthai.openftc.apriltag.ApriltagDetectionJNI.getId(ptrDetection),
+                        com.example.vision.ftcdepthai.openftc.apriltag.ApriltagDetectionJNI.getHamming(ptrDetection),
+                        com.example.vision.ftcdepthai.openftc.apriltag.ApriltagDetectionJNI.getDecisionMargin(ptrDetection),
                         Point(center[0], center[1]),
                         cornerPts,
                         metadata,
@@ -266,7 +266,7 @@ class AprilTagProcessorImpl(
                     )
                 )
             }
-            ApriltagDetectionJNI.freeDetectionList(ptrDetectionArray)
+            com.example.vision.ftcdepthai.openftc.apriltag.ApriltagDetectionJNI.freeDetectionList(ptrDetectionArray)
             return detections
         }
         return ArrayList()
@@ -278,7 +278,7 @@ class AprilTagProcessorImpl(
 
         // Allocate a native context object. See the corresponding deletion in the finalizer
         nativeApriltagPtr =
-            AprilTagDetectorJNI.createApriltagDetector(tagFamily.ATLibTF.string, 3f, threads)
+            com.example.vision.ftcdepthai.openftc.apriltag.AprilTagDetectorJNI.createApriltagDetector(tagFamily.ATLibTF.string, 3f, threads)
     }
 
     override fun onDrawFrame(

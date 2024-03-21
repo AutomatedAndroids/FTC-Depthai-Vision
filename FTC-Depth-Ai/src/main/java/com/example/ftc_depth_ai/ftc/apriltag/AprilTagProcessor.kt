@@ -4,7 +4,7 @@ import com.example.ftc_depth_ai.ftc.VisionProcessor
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit
 import org.opencv.calib3d.Calib3d
-import org.openftc.apriltag.AprilTagDetectorJNI
+import com.example.vision.ftcdepthai.openftc.apriltag.AprilTagDetectorJNI
 
 /*
  * Copyright (c) 2023 FIRST
@@ -39,11 +39,11 @@ import org.openftc.apriltag.AprilTagDetectorJNI
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 abstract class AprilTagProcessor : VisionProcessor {
-    enum class TagFamily(val ATLibTF: AprilTagDetectorJNI.TagFamily) {
-        TAG_36h11(AprilTagDetectorJNI.TagFamily.TAG_36h11),
-        TAG_25h9(AprilTagDetectorJNI.TagFamily.TAG_25h9),
-        TAG_16h5(AprilTagDetectorJNI.TagFamily.TAG_16h5),
-        TAG_standard41h12(AprilTagDetectorJNI.TagFamily.TAG_standard41h12)
+    enum class TagFamily(val ATLibTF: com.example.vision.ftcdepthai.openftc.apriltag.AprilTagDetectorJNI.TagFamily) {
+        TAG_36h11(com.example.vision.ftcdepthai.openftc.apriltag.AprilTagDetectorJNI.TagFamily.TAG_36h11),
+        TAG_25h9(com.example.vision.ftcdepthai.openftc.apriltag.AprilTagDetectorJNI.TagFamily.TAG_25h9),
+        TAG_16h5(com.example.vision.ftcdepthai.openftc.apriltag.AprilTagDetectorJNI.TagFamily.TAG_16h5),
+        TAG_standard41h12(com.example.vision.ftcdepthai.openftc.apriltag.AprilTagDetectorJNI.TagFamily.TAG_standard41h12)
     }
 
     class Builder {

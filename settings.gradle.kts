@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 rootProject.name = "FTC Depth AI"
 include(":app")
 include(":FTC-Depth-Ai")
+include(":openftc")
