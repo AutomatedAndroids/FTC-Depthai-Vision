@@ -31,7 +31,7 @@
 #include <android/log.h>
 
 extern "C" JNIEXPORT jint JNICALL
-Java_org_openftc_apriltag_ApriltagDetectionJNI_getId(JNIEnv *env, jclass clazz, jlong ptr)
+Java_com_example_ftc_1depth_1ai_openftc_apriltag_ApriltagDetectionJNI_getId(JNIEnv *env, jclass clazz, jlong ptr)
 {
     apriltag_detection_t* detection = (apriltag_detection*) ptr;
 
@@ -47,7 +47,7 @@ Java_org_openftc_apriltag_ApriltagDetectionJNI_getId(JNIEnv *env, jclass clazz, 
 }
 
 extern "C" JNIEXPORT jint JNICALL
-Java_org_openftc_apriltag_ApriltagDetectionJNI_getHamming(JNIEnv *env, jclass clazz, jlong ptr)
+Java_com_example_ftc_1depth_1ai_openftc_apriltag_ApriltagDetectionJNI_getHamming(JNIEnv *env, jclass clazz, jlong ptr)
 {
     apriltag_detection_t* detection = (apriltag_detection*) ptr;
 
@@ -63,7 +63,7 @@ Java_org_openftc_apriltag_ApriltagDetectionJNI_getHamming(JNIEnv *env, jclass cl
 }
 
 extern "C" JNIEXPORT jfloat JNICALL
-Java_org_openftc_apriltag_ApriltagDetectionJNI_getDecisionMargin(JNIEnv *env, jclass clazz, jlong ptr)
+Java_com_example_ftc_1depth_1ai_openftc_apriltag_ApriltagDetectionJNI_getDecisionMargin(JNIEnv *env, jclass clazz, jlong ptr)
 {
     apriltag_detection_t* detection = (apriltag_detection*) ptr;
 
@@ -79,7 +79,7 @@ Java_org_openftc_apriltag_ApriltagDetectionJNI_getDecisionMargin(JNIEnv *env, jc
 }
 
 extern "C" JNIEXPORT jdoubleArray JNICALL
-Java_org_openftc_apriltag_ApriltagDetectionJNI_getCenterpoint(JNIEnv *env, jclass clazz, jlong ptr)
+Java_com_example_ftc_1depth_1ai_openftc_apriltag_ApriltagDetectionJNI_getCenterpoint(JNIEnv *env, jclass clazz, jlong ptr)
 {
     apriltag_detection_t* detection = (apriltag_detection*) ptr;
 
@@ -98,7 +98,7 @@ Java_org_openftc_apriltag_ApriltagDetectionJNI_getCenterpoint(JNIEnv *env, jclas
 }
 
 extern "C" JNIEXPORT jdouble JNICALL
-Java_org_openftc_apriltag_ApriltagDetectionJNI_getSize(JNIEnv *env, jobject type, jlong ptr)
+Java_com_example_ftc_1depth_1ai_openftc_apriltag_ApriltagDetectionJNI_getSize(JNIEnv *env, jobject type, jlong ptr)
 {
     apriltag_detection_t* detection = (apriltag_detection*) ptr;
 
@@ -125,7 +125,7 @@ Java_org_openftc_apriltag_ApriltagDetectionJNI_getSize(JNIEnv *env, jobject type
 }
 
 extern "C" JNIEXPORT jobjectArray JNICALL
-Java_org_openftc_apriltag_ApriltagDetectionJNI_getCorners(JNIEnv *env, jclass clazz, jlong ptr)
+Java_com_example_ftc_1depth_1ai_openftc_apriltag_ApriltagDetectionJNI_getCorners(JNIEnv *env, jclass clazz, jlong ptr)
 {
     apriltag_detection_t* detection = (apriltag_detection*) ptr;
 
@@ -168,7 +168,7 @@ Java_org_openftc_apriltag_ApriltagDetectionJNI_getCorners(JNIEnv *env, jclass cl
 }
 
 extern "C" JNIEXPORT jdoubleArray JNICALL
-Java_org_openftc_apriltag_ApriltagDetectionJNI_getPoseEstimate(JNIEnv *env, jclass clazz, jlong ptr,
+Java_com_example_ftc_1depth_1ai_openftc_apriltag_ApriltagDetectionJNI_getPoseEstimate(JNIEnv *env, jclass clazz, jlong ptr,
                                                       jdouble tag_size, jdouble fx, jdouble fy, jdouble cx, jdouble cy)
 {
     apriltag_detection_t* det = (apriltag_detection*) ptr;
@@ -203,7 +203,7 @@ Java_org_openftc_apriltag_ApriltagDetectionJNI_getPoseEstimate(JNIEnv *env, jcla
 }
 
 extern "C" JNIEXPORT jlongArray JNICALL
-Java_org_openftc_apriltag_ApriltagDetectionJNI_getDetectionPointers(JNIEnv *env, jclass clazz, jlong ptr)
+Java_com_example_ftc_1depth_1ai_openftc_apriltag_ApriltagDetectionJNI_getDetectionPointers(JNIEnv *env, jclass clazz, jlong ptr)
 {
     zarray_t* detections = (zarray_t*) ptr;
 
@@ -239,7 +239,7 @@ Java_org_openftc_apriltag_ApriltagDetectionJNI_getDetectionPointers(JNIEnv *env,
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_org_openftc_apriltag_ApriltagDetectionJNI_freeDetectionList(JNIEnv *env, jclass clazz, jlong jPtrDetections)
+Java_com_example_ftc_1depth_1ai_openftc_apriltag_ApriltagDetectionJNI_freeDetectionList(JNIEnv *env, jclass clazz, jlong jPtrDetections)
 {
     zarray_t* detections = (zarray_t*) jPtrDetections;
 

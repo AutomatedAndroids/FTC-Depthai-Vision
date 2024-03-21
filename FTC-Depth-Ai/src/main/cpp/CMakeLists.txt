@@ -7,6 +7,10 @@ cmake_minimum_required(VERSION 3.4.1)
 project("FTC Depth AI")
 set (CMAKE_CXX_STANDARD 11)
 
+SET(CMAKE_SYSTEM_NAME Android)
+SET(CMAKE_SYSTEM_VERSION 24)
+SET(CMAKE_ANDROID_ARCH_ABI armeabi-v7a)
+
 # Specifies a library name, specifies whether the library is STATIC or
 # SHARED, and provides relative paths to the source code. You can
 # define multiple libraries by adding multiple add_library() commands,
@@ -106,5 +110,6 @@ if (DEFINED JNI_LOC)
         include_directories("C:/Users/caden/.jdks/openjdk-21.0.1/include/win32")
     ENDIF ()
 endif ()
+include_directories(C:/Users/caden/AppData/Local/Android/Sdk/ndk/21.3.6528147/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include)
 # include_directories("C:/Users/caden/.jdks/openjdk-21.0.1/include")
 # include_directories("C:/Users/caden/.jdks/openjdk-21.0.1/include/win32")

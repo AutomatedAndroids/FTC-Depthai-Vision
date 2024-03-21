@@ -455,7 +455,7 @@ void string_feeder_require(string_feeder_t *sf, const char *str);
 */
 
 
-// find everything that looks like an env variable and expand it
+// find everything that looks like an globEnv variable and expand it
 // using getenv. Caller should free the result.
 // e.g. "$HOME/abc" ==> "/home/ebolson/abc"
 char *str_expand_envs(const char *in);

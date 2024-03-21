@@ -34,6 +34,7 @@ android {
             ndk {
                 //noinspection ChromeOsAbiSupport
                 abiFilters += listOf("armeabi-v7a","arm64-v8a")
+                ldLibs?.add("android")
             }
             buildConfigField("String","_VERSION_NAME","\""+ PUBLISH_VERSION + "\"")
         }

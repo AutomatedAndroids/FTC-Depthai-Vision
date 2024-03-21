@@ -7,9 +7,9 @@ import org.firstinspires.ftc.robotcore.external.hardware.camera.CameraName
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName
 import org.firstinspires.ftc.robotcore.external.hardware.camera.controls.CameraControl
 import org.firstinspires.ftc.robotcore.internal.system.AppUtil
-import com.example.vision.ftcdepthai.openftc.easyopencv.OpenCvCameraFactory
-import com.example.vision.ftcdepthai.openftc.easyopencv.OpenCvCameraFactory.ViewportSplitMethod
-import com.example.vision.ftcdepthai.openftc.easyopencv.OpenCvWebcam
+import com.example.ftc_depth_ai.openftc.easyopencv.OpenCvCameraFactory
+import com.example.ftc_depth_ai.openftc.easyopencv.OpenCvCameraFactory.ViewportSplitMethod
+import com.example.ftc_depth_ai.openftc.easyopencv.OpenCvWebcam
 
 /*
  * Copyright (c) 2023 FIRST
@@ -47,19 +47,19 @@ abstract class VisionPortal {
     /**
      * StreamFormat is only applicable if using a webcam
      */
-    enum class StreamFormat(public val eocvStreamFormat: com.example.vision.ftcdepthai.openftc.easyopencv.OpenCvWebcam.StreamFormat) {
+    enum class StreamFormat(public val eocvStreamFormat: com.example.ftc_depth_ai.openftc.easyopencv.OpenCvWebcam.StreamFormat) {
         /** The only format that was supported historically; it is uncompressed but
          * chroma subsampled and uses lots of bandwidth - this limits frame rate
          * at higher resolutions and also limits the ability to use two cameras
          * on the same bus to lower resolutions
          */
-        YUY2(com.example.vision.ftcdepthai.openftc.easyopencv.OpenCvWebcam.StreamFormat.YUY2),
+        YUY2(com.example.ftc_depth_ai.openftc.easyopencv.OpenCvWebcam.StreamFormat.YUY2),
 
         /** Compressed motion JPEG stream format; allows for higher resolutions at
          * full frame rate, and better ability to use two cameras on the same bus.
          * Requires extra CPU time to run decompression routine.
          */
-        MJPEG(com.example.vision.ftcdepthai.openftc.easyopencv.OpenCvWebcam.StreamFormat.MJPEG)
+        MJPEG(com.example.ftc_depth_ai.openftc.easyopencv.OpenCvWebcam.StreamFormat.MJPEG)
     }
 
     /**
@@ -404,7 +404,7 @@ abstract class VisionPortal {
          * @return an array of view IDs, whose elements may be passed to [Builder.setLiveViewContainerId]
          */
         @JvmStatic fun makeMultiPortalView(numPortals: Int, mpl: MultiPortalLayout): IntArray {
-            return com.example.vision.ftcdepthai.openftc.easyopencv.OpenCvCameraFactory.getInstance().splitLayoutForMultipleViewports(
+            return com.example.ftc_depth_ai.openftc.easyopencv.OpenCvCameraFactory.getInstance().splitLayoutForMultipleViewports(
                 DEFAULT_VIEW_CONTAINER_ID, numPortals, mpl.viewportSplitMethod
             )
         }
